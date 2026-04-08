@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0f1723" />
+    <meta name="theme-color" content="#0b1220" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Porovnej To" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -14,71 +14,85 @@
   <body>
     <div class="app-shell">
       <header class="hero">
-        <p class="eyebrow">Osobni AI porovnavac elektroniky</p>
-        <h1>Porovnej To</h1>
-        <p class="subtitle">
-          Napis dve veci a dostanes technicke srovnani, odhad ceny, parametry a muj jasny nazor co bych vybrala.
-        </p>
-        <div class="hero-strip">
+        <div class="hero-copy">
+          <p class="eyebrow">AI porovnavac elektroniky</p>
+          <h1>Porovnej To</h1>
+          <p class="subtitle">
+            Srovnej 2 nebo 3 produkty, ziskej parametry po kategoriich, orientacni cenu, zdroje a profesionalni doporuceni.
+          </p>
+        </div>
+        <div class="hero-pill-row">
+          <span>2-3 produkty</span>
           <span>AI research</span>
-          <span>Parametry</span>
-          <span>Cena</span>
-          <span>Muj nazor</span>
+          <span>Citace</span>
+          <span>Online historie</span>
         </div>
       </header>
 
       <main class="layout">
         <section class="card form-card">
-          <h2>Co chces porovnat</h2>
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Vstup</p>
+              <h2>Co chces porovnat</h2>
+            </div>
+            <span class="tiny-badge">V3</span>
+          </div>
+
           <form id="compareForm" class="compare-form">
             <label>
-              <span>Prvni vec</span>
-              <input id="firstItem" type="text" placeholder="Treba iPhone 15 Pro" autocomplete="off" />
+              <span>Prvni produkt</span>
+              <input id="firstItem" type="text" placeholder="Treba iPhone 16 Pro" autocomplete="off" />
             </label>
             <label>
-              <span>Druha vec</span>
-              <input id="secondItem" type="text" placeholder="Treba Google Pixel 10 Pro" autocomplete="off" />
+              <span>Druhy produkt</span>
+              <input id="secondItem" type="text" placeholder="Treba Samsung Galaxy S25 Ultra" autocomplete="off" />
             </label>
-            <button class="primary-button" type="submit">Porovnat</button>
+            <label>
+              <span>Treti produkt nepovinne</span>
+              <input id="thirdItem" type="text" placeholder="Treba Pixel 10 Pro" autocomplete="off" />
+            </label>
+            <button class="primary-button" type="submit">Porovnat produkty</button>
           </form>
+
           <p class="form-note" id="modeNote">
-            Kdyz bude nasazeny backend, appka pouzije zive AI porovnani z webu. Jinak bezi demo rezim.
+            Appka nejdriv zkusi najit stejne porovnani v historii. Kdyz nic nenajde, zavola zive AI porovnani.
           </p>
+
           <div class="quick-list" id="quickList"></div>
         </section>
 
-        <section class="card result-card" id="resultCard">
-          <div class="result-empty" id="resultEmpty">
-            Prvni porovnani se zobrazi tady.
-          </div>
+        <section class="card result-card">
+          <div class="result-empty" id="resultEmpty">Prvni porovnani se zobrazi tady.</div>
+
           <div id="resultContent" hidden>
             <div class="headline-row">
               <div>
                 <p class="result-label">Posledni vysledek</p>
                 <h2 id="resultTitle">Porovnani</h2>
               </div>
-              <span class="badge" id="resultBadge">Rychly tip</span>
+              <span class="badge" id="resultBadge">AI vysledek</span>
             </div>
 
+            <section class="product-grid" id="productGrid"></section>
+
             <section class="metrics-grid">
-              <article class="metric-card">
-                <p class="metric-label">Odhad ceny 1</p>
-                <strong id="priceFirst">-</strong>
-              </article>
-              <article class="metric-card">
-                <p class="metric-label">Odhad ceny 2</p>
-                <strong id="priceSecond">-</strong>
-              </article>
               <article class="metric-card accent-metric">
-                <p class="metric-label">Muj vyber</p>
+                <p class="metric-label">Muj favorit</p>
                 <strong id="myPick">-</strong>
+                <span id="winnerReason" class="metric-sub">-</span>
+              </article>
+              <article class="metric-card">
+                <p class="metric-label">Rezim</p>
+                <strong id="modeSummary">-</strong>
+                <span class="metric-sub">Historie nebo live AI</span>
+              </article>
+              <article class="metric-card">
+                <p class="metric-label">Pocet zdroju</p>
+                <strong id="sourceCount">-</strong>
+                <span class="metric-sub">Podklady pro porovnani</span>
               </article>
             </section>
-
-            <article class="panel" id="specsPanel">
-              <h3>Porovnani parametru</h3>
-              <div id="specsGrid" class="specs-grid"></div>
-            </article>
 
             <article class="panel">
               <h3>Shrnuti</h3>
@@ -86,8 +100,18 @@
             </article>
 
             <article class="panel">
+              <h3>Pro koho je co lepsi</h3>
+              <div id="betterForGrid" class="use-case-grid"></div>
+            </article>
+
+            <article class="panel">
               <h3>Hlavni rozdily</h3>
               <ul id="differencesList" class="bullet-list"></ul>
+            </article>
+
+            <article class="panel">
+              <h3>Parametry podle kategorii</h3>
+              <div id="specSections" class="spec-sections"></div>
             </article>
 
             <article class="panel pros-cons">
@@ -112,20 +136,21 @@
             </article>
 
             <article class="panel" id="sourcesPanel" hidden>
-              <h3>Zdroje</h3>
-              <ul id="sourcesList" class="bullet-list"></ul>
+              <h3>Zdroje a citace</h3>
+              <div id="sourcesList" class="sources-grid"></div>
             </article>
           </div>
         </section>
 
         <section class="card history-card">
           <div class="history-heading">
-            <h2>Historie</h2>
+            <div>
+              <p class="section-kicker">Pamet</p>
+              <h2>Historie porovnani</h2>
+            </div>
             <button id="clearHistory" class="ghost-button" type="button">Smazat</button>
           </div>
-          <div id="historyList" class="history-list empty-state">
-            Zatim tu nejsou zadna porovnani.
-          </div>
+          <div id="historyList" class="history-list empty-state">Zatim tu nejsou zadna porovnani.</div>
         </section>
       </main>
     </div>
