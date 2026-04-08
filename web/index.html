@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#efe6d7" />
+    <meta name="theme-color" content="#0f1723" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Porovnej To" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -14,11 +14,17 @@
   <body>
     <div class="app-shell">
       <header class="hero">
-        <p class="eyebrow">Osobni AI porovnavac</p>
+        <p class="eyebrow">Osobni AI porovnavac elektroniky</p>
         <h1>Porovnej To</h1>
         <p class="subtitle">
-          Napis dve veci a dostanes rychly cesky prehled rozdilu, plusu, minusu a doporuceni.
+          Napis dve veci a dostanes technicke srovnani, odhad ceny, parametry a muj jasny nazor co bych vybrala.
         </p>
+        <div class="hero-strip">
+          <span>AI research</span>
+          <span>Parametry</span>
+          <span>Cena</span>
+          <span>Muj nazor</span>
+        </div>
       </header>
 
       <main class="layout">
@@ -54,6 +60,26 @@
               <span class="badge" id="resultBadge">Rychly tip</span>
             </div>
 
+            <section class="metrics-grid">
+              <article class="metric-card">
+                <p class="metric-label">Odhad ceny 1</p>
+                <strong id="priceFirst">-</strong>
+              </article>
+              <article class="metric-card">
+                <p class="metric-label">Odhad ceny 2</p>
+                <strong id="priceSecond">-</strong>
+              </article>
+              <article class="metric-card accent-metric">
+                <p class="metric-label">Muj vyber</p>
+                <strong id="myPick">-</strong>
+              </article>
+            </section>
+
+            <article class="panel" id="specsPanel">
+              <h3>Porovnani parametru</h3>
+              <div id="specsGrid" class="specs-grid"></div>
+            </article>
+
             <article class="panel">
               <h3>Shrnuti</h3>
               <p id="summaryText"></p>
@@ -78,6 +104,11 @@
             <article class="panel verdict-panel">
               <h3>Verdikt</h3>
               <p id="verdictText"></p>
+            </article>
+
+            <article class="panel opinion-panel">
+              <h3>Muj nazor</h3>
+              <p id="opinionText"></p>
             </article>
 
             <article class="panel" id="sourcesPanel" hidden>
