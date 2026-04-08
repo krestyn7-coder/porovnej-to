@@ -24,6 +24,30 @@ export default async function handler(request, response) {
     properties: {
       title: { type: "string" },
       badge: { type: "string" },
+      prices: {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          first: { type: "string" },
+          second: { type: "string" }
+        },
+        required: ["first", "second"]
+      },
+      myPick: { type: "string" },
+      opinion: { type: "string" },
+      specs: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            name: { type: "string" },
+            first: { type: "string" },
+            second: { type: "string" }
+          },
+          required: ["name", "first", "second"]
+        }
+      },
       summary: { type: "string" },
       differences: {
         type: "array",
@@ -51,7 +75,7 @@ export default async function handler(request, response) {
         }
       }
     },
-    required: ["title", "badge", "summary", "differences", "pros", "cons", "verdict", "sources"]
+    required: ["title", "badge", "prices", "myPick", "opinion", "specs", "summary", "differences", "pros", "cons", "verdict", "sources"]
   };
 
   const openAIResponse = await fetch("https://api.openai.com/v1/responses", {
@@ -75,7 +99,7 @@ export default async function handler(request, response) {
             {
               type: "input_text",
               text:
-                "Jsi cesky AI porovnavac produktu. Udelej aktualni webovy research, oddel fakta od odhadu, vrat vysledek strucne, prehledne a prakticky pro bezneho kupujiciho."
+                "Jsi cesky AI porovnavac elektroniky a spotrebni techniky. Udelej aktualni webovy research, oddel fakta od odhadu, vrat vysledek strucne, prehledne a prakticky pro bezneho kupujiciho. U cen pouzij odhadovanou aktualni trzni hladinu a kdyz si nejsi jista, jasne to zaramuj jako odhad."
             }
           ]
         },
@@ -85,7 +109,7 @@ export default async function handler(request, response) {
             {
               type: "input_text",
               text:
-                `Porovnej mi ${first} a ${second}. Vrat shrnuti, hlavni rozdily, plusy, minusy a verdikt v cestine. Pridej jen relevantni zdroje, ktere opravdu podporuji srovnani.`
+                `Porovnej mi ${first} a ${second}. Vrat vysledek v cestine. Chci shrnuti, hlavni rozdily, plusy, minusy, porovnani parametru, odhadovanou cenu obou veci a taky tvuj vlastni nazor co bys doporucila beznemu uzivateli a proc. Pridej jen relevantni zdroje, ktere opravdu podporuji srovnani.`
             }
           ]
         }
