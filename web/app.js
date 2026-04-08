@@ -73,6 +73,15 @@ async function compareItems(firstRaw, secondRaw) {
     return;
   }
 
+  const cachedResult = findCachedComparison(first, second);
+  if (cachedResult) {
+    state.lastResult = cachedResult;
+    renderResult(cachedResult);
+    renderHistory();
+    elements.modeNote.textContent = "Stejne porovnani jsem nasla v historii, tak jsem ho znovu pouzila bez noveho AI volani.";
+    return;
+  }
+
   setLoading(true);
   const result = (await tryLiveComparison(first, second)) || generateComparison(first, second);
   state.lastResult = result;
@@ -113,7 +122,7 @@ function generateComparison(first, second) {
       differences: [
         `${first} muze byt silnejsi v exkluzivitach nebo znamych first-party znackach.`,
         `${second} muze zaujmout sluzbami, predplatnym nebo zpusobem, jak se ti pracuje s ekosystemem.`,
-        `Kvalita hraní nebude dramaticky jina, ale pocit z cele sluzby ano.`
+        `Kvalita hrani nebude dramaticky jina, ale pocit z cele sluzby ano.`
       ],
       pros: [
         `${first} dava smysl, kdyz te tahnou konkretni hry a znacka.`,
@@ -295,6 +304,25 @@ function loadState() {
     state.history = [];
     state.lastResult = null;
   }
+}
+
+function findCachedComparison(first, second) {
+  const targetKey = comparisonKey(first, second);
+  return state.history.find((entry) => comparisonKey(entry.first, entry.second) === targetKey) || null;
+}
+
+function comparisonKey(first, second) {
+  const normalized = [normalizeItem(first), normalizeItem(second)].sort();
+  return normalized.join("::");
+}
+
+function normalizeItem(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 async function tryLiveComparison(first, second) {
