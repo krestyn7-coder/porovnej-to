@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
       "source": "/",
       "destination": "/web/index.html"
     },
@@ -21,7 +25,7 @@
       "destination": "/web/icon.svg"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/web/$1"
     }
   ]
