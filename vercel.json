@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/web/index.html"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "/web/styles.css"
+    },
+    {
+      "source": "/app.js",
+      "destination": "/web/app.js"
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "destination": "/web/manifest.webmanifest"
+    },
+    {
+      "source": "/icon.svg",
+      "destination": "/web/icon.svg"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/web/$1"
+    }
+  ]
+}

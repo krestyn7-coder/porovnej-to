@@ -1,0 +1,270 @@
+:root {
+  --bg-a: #f2eadc;
+  --bg-b: #dfe7ef;
+  --card: rgba(255, 255, 255, 0.84);
+  --card-strong: rgba(255, 255, 255, 0.94);
+  --text: #171513;
+  --muted: #6b655f;
+  --accent: #171513;
+  --accent-soft: #efe4ce;
+  --line: rgba(23, 21, 19, 0.08);
+  --shadow: 0 18px 50px rgba(82, 72, 61, 0.12);
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --font-ui: "Avenir Next", "SF Pro Display", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.65), transparent 35%),
+    linear-gradient(165deg, var(--bg-a), var(--bg-b));
+}
+
+body {
+  padding:
+    max(18px, env(safe-area-inset-top))
+    16px
+    max(24px, env(safe-area-inset-bottom))
+    16px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.hero,
+.card,
+.panel {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  line-height: 0.95;
+}
+
+.subtitle {
+  margin: 14px 0 0;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.layout {
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.compare-form {
+  display: grid;
+  gap: 12px;
+}
+
+.compare-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.compare-form span {
+  color: var(--muted);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.88);
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: rgba(23, 21, 19, 0.2);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.42);
+}
+
+.primary-button,
+.ghost-button,
+.quick-chip {
+  border: 0;
+  cursor: pointer;
+}
+
+.primary-button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.primary-button[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.form-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.ghost-button {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.quick-chip {
+  padding: 11px 13px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
+
+.headline-row,
+.history-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.result-label {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.badge {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.result-empty,
+.empty-state {
+  color: var(--muted);
+}
+
+.panel {
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 14px;
+  background: var(--card-strong);
+  box-shadow: none;
+}
+
+.panel h3,
+.card h2 {
+  margin: 0 0 10px;
+}
+
+.panel p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.bullet-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.pros-cons {
+  display: grid;
+  gap: 16px;
+}
+
+.verdict-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 228, 206, 0.88));
+}
+
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.history-item {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+}
+
+.history-item strong,
+.history-item span {
+  display: block;
+}
+
+.history-item strong {
+  margin-bottom: 6px;
+}
+
+.history-item span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+@media (min-width: 820px) {
+  .layout {
+    grid-template-columns: 340px minmax(0, 1fr);
+  }
+
+  .history-card {
+    grid-column: 1 / -1;
+  }
+
+  .pros-cons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
