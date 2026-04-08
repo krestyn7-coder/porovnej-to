@@ -24,11 +24,16 @@ const elements = {
   resultContent: document.querySelector("#resultContent"),
   resultTitle: document.querySelector("#resultTitle"),
   resultBadge: document.querySelector("#resultBadge"),
+  priceFirst: document.querySelector("#priceFirst"),
+  priceSecond: document.querySelector("#priceSecond"),
+  myPick: document.querySelector("#myPick"),
+  specsGrid: document.querySelector("#specsGrid"),
   summaryText: document.querySelector("#summaryText"),
   differencesList: document.querySelector("#differencesList"),
   prosList: document.querySelector("#prosList"),
   consList: document.querySelector("#consList"),
   verdictText: document.querySelector("#verdictText"),
+  opinionText: document.querySelector("#opinionText"),
   sourcesPanel: document.querySelector("#sourcesPanel"),
   sourcesList: document.querySelector("#sourcesList"),
   historyList: document.querySelector("#historyList"),
@@ -101,6 +106,18 @@ function generateComparison(first, second) {
     smartphone: {
       badge: "Telefony",
       summary: `${first} a ${second} budou nejspis cilit na podobneho cloveka, ale kazdy z nich obvykle boduje v jine casti zazitku. Jeden casto pusobi vice premiove a stabilne, druhy zase vice flexibilne a nabizi jiny styl fotek nebo systemu.`,
+      prices: {
+        first: "Vyssi stredni nebo vyssi trida",
+        second: "Vyssi stredni nebo vyssi trida"
+      },
+      myPick: first,
+      opinion: `Kdybych si mela vybrat naslepo pro cloveka, ktery chce co nejmene resit kompromisy, sahla bych spis po ${first}. Pokud ale chces vic experimentovat a zaujala te specificka AI nebo fotky, dava smysl i ${second}.`,
+      specs: [
+        { name: "Displej", first: "Premiovy OLED panel", second: "Kvalitni OLED panel" },
+        { name: "Fotoaparat", first: "Stabilni a konzistentni fotky", second: "Vyrazny vlastni styl fotek" },
+        { name: "System", first: "Silny ekosystem a jednoduchost", second: "Vetsi otevrenost a Google sluzby" },
+        { name: "Podpora", first: "Dlouha a predvidatelna", second: "Dobra, ale podle znacky ruzne vnimana" }
+      ],
       differences: [
         `${first} bude pro nekoho zajimavy hlavne kvuli prostredi, ekosystemu a delce podpory.`,
         `${second} muze vic zaujmout otevrenosti systemu, AI funkcemi nebo vlastnim stylem fotaku.`,
@@ -119,6 +136,18 @@ function generateComparison(first, second) {
     console: {
       badge: "Herni konzole",
       summary: `${first} a ${second} jsou si vykonove blizko, ale rozdil dela hlavne knihovna her, ovladac a to, ke ktere znacce mas bliz.`,
+      prices: {
+        first: "Podobna konzolova hladina",
+        second: "Podobna konzolova hladina"
+      },
+      myPick: first,
+      opinion: `Tady bych se rozhodovala hlavne podle her. Pokud nemas silnou preferenci, lehce bych se priklonila k ${first}, ale u konzoli je osobni vkus uplne klicovy.`,
+      specs: [
+        { name: "Vykon", first: "Srovnatelna moderna konzole", second: "Srovnatelna moderna konzole" },
+        { name: "Hry", first: "Silne first-party znacky", second: "Silne sluzby a jina nabidka" },
+        { name: "Predplatne", first: "Podle ekosystemu", second: "Casto vyhodne pro hrace sluzeb" },
+        { name: "Ovlac", first: "Vlastni styl ovladace", second: "Vlastni styl ovladace" }
+      ],
       differences: [
         `${first} muze byt silnejsi v exkluzivitach nebo znamych first-party znackach.`,
         `${second} muze zaujmout sluzbami, predplatnym nebo zpusobem, jak se ti pracuje s ekosystemem.`,
@@ -137,6 +166,18 @@ function generateComparison(first, second) {
     audio: {
       badge: "Sluchatka",
       summary: `U ${first} a ${second} obvykle rozhoduje hlavne pohodli, zvukovy charakter, ANC a to, s jakym telefonem je budes nejvic pouzivat.`,
+      prices: {
+        first: "Vyssi audio trida",
+        second: "Vyssi audio trida"
+      },
+      myPick: second,
+      opinion: `Kdybych vybirala ciste podle zvuku a univerzalnosti, casto bych sahla po ${second}. Pokud je pro tebe ale dulezite bezproblemove pouzivani v jednom ekosystemu, ${first} muze byt prijemnejsi volba.`,
+      specs: [
+        { name: "Zvuk", first: "Vyladeny pro pohodove poslouchani", second: "Casto detailnejsi a nastavitelny" },
+        { name: "ANC", first: "Silne", second: "Velmi silne" },
+        { name: "Ekosystem", first: "Top v jednom ekosystemu", second: "Univerzalnejsi" },
+        { name: "Nastaveni", first: "Jednodussi", second: "Podrobnejsi" }
+      ],
       differences: [
         `${first} muze byt silnejsi v jednoduchosti ovladani a propojeni s jednou znackou.`,
         `${second} muze nabidnout jiny zvukovy projev nebo detailnejsi nastaveni.`,
@@ -155,6 +196,18 @@ function generateComparison(first, second) {
     streaming: {
       badge: "Streamovaci sluzby",
       summary: `${first} a ${second} se nejvic lisi nabidkou obsahu, stylem aplikace a tim, co realne sledujes nejcasteji.`,
+      prices: {
+        first: "Podle aktualniho tarifu sluzby",
+        second: "Podle aktualniho tarifu sluzby"
+      },
+      myPick: first,
+      opinion: `Tady bych volila to, co budes opravdu zapinat casteji. Kdybych mela vybrat naslepo, necham si ${first} jen pokud mi dlouhodobe dava vic konkretniho obsahu.`,
+      specs: [
+        { name: "Obsah", first: "Vlastni tvorba a doporuceni", second: "Jiny mix filmu a serialu" },
+        { name: "Aplikace", first: "Znamy styl ovladani", second: "Jiny pocit z prohlizeni" },
+        { name: "Cena", first: "Podle tarifu", second: "Podle tarifu" },
+        { name: "Pro koho", first: "Pro fanousky jejich katalogu", second: "Pro fanousky jineho typu obsahu" }
+      ],
       differences: [
         `${first} muze mit pro tebe zajimavejsi vlastni tvorbu a jina doporuceni.`,
         `${second} muze nabizet jiny pomer filmu, serialu a lokalniho obsahu.`,
@@ -173,6 +226,18 @@ function generateComparison(first, second) {
     general: {
       badge: "Rychle porovnani",
       summary: `${first} a ${second} budou nejspis cilit na podobnou potrebu, ale kazda varianta muze byt lepsi pro jiny typ cloveka.`,
+      prices: {
+        first: "Podle trhu a varianty",
+        second: "Podle trhu a varianty"
+      },
+      myPick: first,
+      opinion: `Kdybych mela vybrat jen podle bezpecnejsiho dojmu, sahla bych spis po ${first}. Pokud ale vis, proc chces konkretne ${second}, klidne muze byt lepsi prave ten.`,
+      specs: [
+        { name: "Hlavni fokus", first: "Vyrovnany zazitek", second: "Jina priorita nebo funkce" },
+        { name: "Pouziti", first: "Univerzalnejsi", second: "Specifickejsi" },
+        { name: "Pomer cena vykon", first: "Zalezi na trhu", second: "Zalezi na trhu" },
+        { name: "Pro koho", first: "Pro cloveka co chce klid", second: "Pro cloveka co vi co chce" }
+      ],
       differences: [
         `${first} muze pusobit bezpecneji a jednoduseji na kazdodenni pouzivani.`,
         `${second} muze byt zajimavejsi, pokud hledas neco konkretniho nebo jiny pomer ceny a hodnoty.`,
@@ -197,6 +262,10 @@ function generateComparison(first, second) {
     first,
     second,
     badge: `Demo - ${selected.badge}`,
+    prices: selected.prices,
+    myPick: selected.myPick,
+    opinion: selected.opinion,
+    specs: selected.specs,
     summary: selected.summary,
     differences: selected.differences,
     pros: selected.pros,
@@ -234,11 +303,16 @@ function renderResult(result) {
   elements.resultContent.hidden = false;
   elements.resultTitle.textContent = result.title;
   elements.resultBadge.textContent = result.badge;
+  elements.priceFirst.textContent = result.prices?.first || "-";
+  elements.priceSecond.textContent = result.prices?.second || "-";
+  elements.myPick.textContent = result.myPick || "-";
   elements.summaryText.textContent = result.summary;
+  elements.opinionText.textContent = result.opinion || result.verdict;
   renderBulletList(elements.differencesList, result.differences);
   renderBulletList(elements.prosList, result.pros);
   renderBulletList(elements.consList, result.cons);
   elements.verdictText.textContent = result.verdict;
+  renderSpecs(result);
 
   if (Array.isArray(result.sources) && result.sources.length) {
     elements.sourcesPanel.hidden = false;
@@ -249,6 +323,34 @@ function renderResult(result) {
     elements.sourcesPanel.hidden = true;
     elements.sourcesList.innerHTML = "";
   }
+}
+
+function renderSpecs(result) {
+  const specs = Array.isArray(result.specs) ? result.specs : [];
+  if (!specs.length) {
+    elements.specsGrid.innerHTML = "<p>Parametry zatim nejsou k dispozici.</p>";
+    return;
+  }
+
+  elements.specsGrid.innerHTML = specs
+    .map(
+      (spec) => `
+        <article class="spec-row">
+          <strong class="spec-name">${escapeHtml(spec.name)}</strong>
+          <div class="spec-values">
+            <div class="spec-value">
+              <span class="spec-device">${escapeHtml(result.first)}</span>
+              <strong>${escapeHtml(spec.first)}</strong>
+            </div>
+            <div class="spec-value">
+              <span class="spec-device">${escapeHtml(result.second)}</span>
+              <strong>${escapeHtml(spec.second)}</strong>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
 }
 
 function renderBulletList(target, items) {
